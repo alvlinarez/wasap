@@ -40,7 +40,10 @@ body {
     background-color: #a6a6a4;
     display: flex;
     border-radius: 10px;
+}
 
+.aside .chats .chats-container i {
+    cursor: pointer;
 }
 
 .aside .chats .chats-container .chats-container__arrow {
@@ -57,17 +60,20 @@ body {
     width: 20%;
 }
 
-.aside .chats span {
-}
 
 .aside .chats span .fa-plus {
     margin-right: 20px;
+}
+
+.aside .chats {
+    padding-bottom: 20px;
 }
 
 .chats-list {
     margin: 0 20px;
     background-color: #e8e8e8;
     border-radius: 10px;
+    height: 200px;
 }
 
 .chats-list ul {
@@ -79,6 +85,50 @@ body {
     text-align: center;
     list-style: none;
     padding: 10px 0;
+}
+
+.search-chat {
+    padding-top: 10px;
+    text-align: center;
+}
+
+.search-chat input {
+    padding: 0;
+    margin: 0;
+    width: 80%;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.search-chat > .results {
+    padding: 5px 0;
+    text-align: center;
+    height: 100px;
+    overflow-y: scroll;
+    width: 80%;
+    margin: 0 10%;
+}
+
+.button-add-chat {
+    width: 80%;
+    height: 30px;
+    margin: 10px 0;
+    padding: 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-add-chat:hover {
+    background-color: #cccccc;
+}
+
+.results-item {
+    padding: 10px 0;
+}
+
+.results-item:hover{
+    background-color: #cccccc;
+    cursor: pointer;
 }
 
 /* CONTENT */
@@ -224,7 +274,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 15%;
+    width: 10%;
     font-size: 25px;
     color: #e8e8e8;
     background: #128c7e;
