@@ -1,5 +1,5 @@
 {
-  "name": "chatcord",
+  "name": "wasap",
   "version": "1.0.0",
   "description": "",
   "main": "./src/index.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alvlinarez/chatcord.git"
+    "url": "git+https://github.com/alvlinarez/wasap.git"
   },
   "author": "@alvlinarez",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/alvlinarez/chatcord/issues"
+    "url": "https://github.com/alvlinarez/wasap/issues"
   },
-  "homepage": "https://github.com/alvlinarez/chatcord#readme",
+  "homepage": "https://github.com/alvlinarez/wasap#readme",
   "dependencies": {
     "react": "16.13.1",
     "react-dom": "16.13.1",
