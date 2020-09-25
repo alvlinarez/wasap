@@ -282,3 +282,7 @@ body {
     border-radius: 50%;
     cursor: pointer;
 }
+
+.send-container button:hover {
+    background-color: #075E54;
+}
