@@ -5,10 +5,12 @@ export const assignCurrentUser = (user) => ({
   payload: user
 });
 
-export const addUser = (user) => ({
-  type: ADD_USER,
-  payload: user
-});
+export const addUser = (user) => {
+  return {
+    type: ADD_USER,
+    payload: user
+  };
+};
 
 export const editUser = (user) => ({
   type: EDIT_USER,

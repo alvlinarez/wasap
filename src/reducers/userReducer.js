@@ -21,7 +21,7 @@ export default (state = initialState, action) => {
     case ADD_USER:
       return {
         ...state,
-        users: state.users.push(action.payload)
+        users: [...state.users, action.payload]
       };
     case EDIT_USER:
       return {

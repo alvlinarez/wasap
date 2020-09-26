@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { editUser } from '../../actions/userActions';
 import { EditUsernameContainer } from './styles';
-import { useSelector } from 'react-redux';
 
 const EditUsername = ({ editUsername, setEditUsername }) => {
-  const { name } = useSelector((state) => state.user.currentUser);
+  const { id, name } = useSelector((state) => state.user.currentUser);
   const [username, setUsername] = useState(name);
 
+  // dispatch to change username
+  const dispatch = useDispatch();
+
   const handleEdit = () => {
+    if (username.trim() === '') return;
+    dispatch(editUser({ id, name: username }));
     setEditUsername(false);
   };
 
@@ -17,6 +23,9 @@ const EditUsername = ({ editUsername, setEditUsername }) => {
         onChange={(e) => setUsername(e.target.value)}
         value={username}
         placeholder="Edit username..."
+        onKeyDown={(e) => {
+          e.key === 'Enter' && handleEdit();
+        }}
       />
       <span onClick={handleEdit}>
         <i className="far fa-check-circle" />

@@ -1,15 +1,38 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { assignCurrentUser, addUser } from '../../actions/userActions';
+import EditUsername from '../EditUsername';
 import userIcon from '../../../public/static/user-icon.png';
 import { Dropdown, DropdownContent, LiUsername, Nav, Username } from './styles';
-import EditUsername from '../EditUsername';
-import { useSelector } from 'react-redux';
+
+const short = require('short-uuid');
 
 const Navbar = () => {
   // Get users from reducer
-  const { name } = useSelector((state) => state.user.currentUser);
+  const { id, name } = useSelector((state) => state.user.currentUser);
   const users = useSelector((state) => state.user.users);
+  // dispatch
+  const dispatch = useDispatch();
 
   const [editUsername, setEditUsername] = useState(false);
+
+  // Add user
+  const handleAddUser = () => {
+    const newUserId = short.generate();
+    dispatch(
+      addUser({
+        id: newUserId,
+        name: newUserId
+      })
+    );
+    dispatch(
+      assignCurrentUser({
+        id: newUserId,
+        name: newUserId
+      })
+    );
+  };
+
   return (
     <Nav>
       <ul>
@@ -31,12 +54,19 @@ const Navbar = () => {
             <img src={userIcon} alt="user-icon" />
             <DropdownContent>
               {users &&
-                users.map((user) => (
-                  <a key={user.id} href="#">
-                    {user.name}
-                  </a>
-                ))}
-              <a href="#">
+                users.map((user) => {
+                  if (user.id !== id) {
+                    return (
+                      <a
+                        key={user.id}
+                        onClick={() => dispatch(assignCurrentUser(user))}
+                      >
+                        {user.name}
+                      </a>
+                    );
+                  }
+                })}
+              <a onClick={handleAddUser}>
                 Add user <i className="fas fa-plus" />
               </a>
             </DropdownContent>

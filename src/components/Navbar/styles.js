@@ -42,6 +42,7 @@ export const DropdownContent = styled.div`
     text-decoration: none;
     display: block;
     padding: 5px 0;
+    cursor: pointer;
     &:hover {
       text-decoration: underline;
     }
