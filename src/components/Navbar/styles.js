@@ -16,8 +16,13 @@ export const Nav = styled.nav`
   }
 `;
 
-export const Username = styled.div`
+export const LiUsername = styled.li`
   display: flex;
+  align-items: center;
+`;
+
+export const Username = styled.div`
+  display: ${(props) => (props.show ? 'none' : 'flex')};
   align-items: center;
   span {
     margin-left: 20px;

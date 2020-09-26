@@ -1,19 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import userIcon from '../../../public/static/user-icon.png';
-import { Dropdown, DropdownContent, Nav, Username } from './styles';
+import { Dropdown, DropdownContent, LiUsername, Nav, Username } from './styles';
+import EditUsername from '../EditUsername';
 
 const Navbar = () => {
+  const [editUsername, setEditUsername] = useState(false);
   return (
     <Nav>
       <ul>
-        <li>
-          <Username>
+        <LiUsername>
+          <Username show={editUsername}>
             <p>Hello: username</p>
-            <span>
+            <span onClick={() => setEditUsername(true)}>
               <i className="far fa-edit" />
             </span>
           </Username>
-        </li>
+
+          <EditUsername
+            editUsername={editUsername}
+            setEditUsername={setEditUsername}
+          />
+        </LiUsername>
         <li>
           <Dropdown>
             <img src={userIcon} alt="user-icon" />

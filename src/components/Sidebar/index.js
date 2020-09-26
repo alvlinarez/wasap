@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Aside,
   Button,
@@ -14,6 +14,17 @@ import {
 } from './styles';
 
 const Sidebar = () => {
+  const [showPrivateChats, setShowPrivateChats] = useState(false);
+  const [showPublicChats, setShowPublicChats] = useState(false);
+
+  const handleShowPrivateChats = () => {
+    setShowPrivateChats(!showPrivateChats);
+  };
+
+  const handleShowPublicChats = () => {
+    setShowPublicChats(!showPublicChats);
+  };
+
   return (
     <Aside>
       <Logo>
@@ -21,22 +32,27 @@ const Sidebar = () => {
       </Logo>
 
       <Chat>
-        <ChatContainer>
+        <ChatContainer onClick={handleShowPrivateChats}>
           <ChatContainerArrow>
-            <span>
-              <i className="fas fa-angle-down" />
-            </span>
+            {showPrivateChats ? (
+              <span>
+                <i className="fas fa-angle-up" />
+              </span>
+            ) : (
+              <span>
+                <i className="fas fa-angle-down" />
+              </span>
+            )}
           </ChatContainerArrow>
           <ChatContainerTitle>
             <span>Private Chats</span>
           </ChatContainerTitle>
         </ChatContainer>
 
-        <ChatList>
+        <ChatList show={showPrivateChats}>
           <SearchChat>
-            <Button type="button">Add Chat</Button>
             <input type="text" placeholder="Search chat..." />
-            <Results>
+            <Results style={{ height: '140px' }}>
               <ResultItem>username 1</ResultItem>
               <ResultItem>username 2</ResultItem>
               <ResultItem>username 3</ResultItem>
@@ -49,20 +65,26 @@ const Sidebar = () => {
       </Chat>
 
       <Chat>
-        <ChatContainer>
+        <ChatContainer onClick={handleShowPublicChats}>
           <ChatContainerArrow>
-            <span>
-              <i className="fas fa-angle-down" />
-            </span>
+            {showPublicChats ? (
+              <span>
+                <i className="fas fa-angle-up" />
+              </span>
+            ) : (
+              <span>
+                <i className="fas fa-angle-down" />
+              </span>
+            )}
           </ChatContainerArrow>
           <ChatContainerTitle>
             <span>Public Chats</span>
           </ChatContainerTitle>
         </ChatContainer>
 
-        <ChatList>
+        <ChatList show={showPublicChats}>
           <SearchChat>
-            <Button type="button">Add Chat</Button>
+            <Button type="button">Add New Chat</Button>
             <input type="text" placeholder="Search chat..." />
             <Results>
               <ResultItem>Cats</ResultItem>

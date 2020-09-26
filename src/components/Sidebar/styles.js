@@ -24,6 +24,7 @@ export const ChatContainer = styled.div`
   background-color: #a6a6a4;
   display: flex;
   border-radius: 10px;
+  cursor: pointer;
   & i {
     cursor: pointer;
   }
@@ -37,6 +38,7 @@ export const ChatContainerArrow = styled.div`
 export const ChatContainerTitle = styled.div`
   width: 60%;
   text-align: center;
+  user-select: none;
 `;
 
 export const PlusIcon = styled.i`
@@ -44,6 +46,7 @@ export const PlusIcon = styled.i`
 `;
 
 export const ChatList = styled.div`
+  display: ${(props) => (props.show ? 'block' : 'none')};
   margin: 0 20px;
   background-color: #e8e8e8;
   border-radius: 10px;
