@@ -1,7 +1,4 @@
-import {
-  ADD_CONVERSATION,
-  GET_CONVERSATIONS
-} from '../types/conversationTypes';
+import { ADD_CONVERSATION } from '../types/conversationTypes';
 
 const initialState = {
   conversations: []
@@ -9,8 +6,11 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case GET_CONVERSATIONS:
     case ADD_CONVERSATION:
+      return {
+        ...state,
+        conversations: state.conversations.push(action.payload)
+      };
     default:
       return state;
   }

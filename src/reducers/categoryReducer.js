@@ -1,4 +1,4 @@
-import { GET_CATEGORIES, ADD_CATEGORY } from '../types/categoryTypes';
+import { ADD_CATEGORY } from '../types/categoryTypes';
 const short = require('short-uuid');
 
 const initialState = {
@@ -24,8 +24,14 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case GET_CATEGORIES:
     case ADD_CATEGORY:
+      return {
+        ...state,
+        categories: state.categories.push({
+          id: short.generate(),
+          name: action.payload
+        })
+      };
     default:
       return state;
   }

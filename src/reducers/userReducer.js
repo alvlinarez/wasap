@@ -1,10 +1,4 @@
-import {
-  GET_USERS,
-  ADD_USER,
-  EDIT_USER,
-  ASSIGN_CURRENT_USER,
-  EDIT_CURRENT_USER
-} from '../types/userTypes';
+import { ADD_USER, EDIT_USER, ASSIGN_CURRENT_USER } from '../types/userTypes';
 const short = require('short-uuid');
 
 const userId = short.generate();
@@ -24,11 +18,24 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case GET_USERS:
     case ADD_USER:
+      return {
+        ...state,
+        users: state.users.push(action.payload)
+      };
     case EDIT_USER:
+      return {
+        ...state,
+        currentUser: action.payload,
+        users: state.users.map((user) =>
+          user.id === action.payload.id ? action.payload : user
+        )
+      };
     case ASSIGN_CURRENT_USER:
-    case EDIT_CURRENT_USER:
+      return {
+        ...state,
+        currentUser: action.payload
+      };
     default:
       return state;
   }
