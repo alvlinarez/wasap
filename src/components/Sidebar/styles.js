@@ -75,6 +75,7 @@ export const Results = styled.div`
   text-align: center;
   height: 100px;
   overflow-y: scroll;
+  overflow-wrap: anywhere;
   width: 80%;
   margin: 0 10%;
 `;

@@ -51,6 +51,7 @@ export const DropdownContent = styled.div`
 export const Dropdown = styled.div`
   position: relative;
   display: inline-block;
+  overflow-wrap: anywhere;
   &:hover {
     img {
       cursor: pointer;

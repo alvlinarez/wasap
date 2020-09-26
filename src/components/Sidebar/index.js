@@ -12,8 +12,14 @@ import {
   Results,
   SearchChat
 } from './styles';
+import { useSelector } from 'react-redux';
 
 const Sidebar = () => {
+  // Get users and categories from state
+  const currentUser = useSelector((state) => state.user.currentUser);
+  const users = useSelector((state) => state.user.users);
+  const categories = useSelector((state) => state.category.categories);
+
   const [showPrivateChats, setShowPrivateChats] = useState(false);
   const [showPublicChats, setShowPublicChats] = useState(false);
 
@@ -53,12 +59,14 @@ const Sidebar = () => {
           <SearchChat>
             <input type="text" placeholder="Search chat..." />
             <Results style={{ height: '140px' }}>
-              <ResultItem>username 1</ResultItem>
-              <ResultItem>username 2</ResultItem>
-              <ResultItem>username 3</ResultItem>
-              <ResultItem>username 4</ResultItem>
-              <ResultItem>username 5</ResultItem>
-              <ResultItem>username 6</ResultItem>
+              {users && users.length <= 1 ? (
+                <div>No users to chat yet.</div>
+              ) : (
+                users.map((user) => {
+                  if (user.id !== currentUser.id)
+                    return <ResultItem key={user.id}>{user.name}</ResultItem>;
+                })
+              )}
             </Results>
           </SearchChat>
         </ChatList>
@@ -87,12 +95,10 @@ const Sidebar = () => {
             <Button type="button">Add New Chat</Button>
             <input type="text" placeholder="Search chat..." />
             <Results>
-              <ResultItem>Cats</ResultItem>
-              <ResultItem>Dogs</ResultItem>
-              <ResultItem>Dogs</ResultItem>
-              <ResultItem>Dogs</ResultItem>
-              <ResultItem>Dogs</ResultItem>
-              <ResultItem>Dogs</ResultItem>
+              {categories &&
+                categories.map((category) => (
+                  <ResultItem key={category.id}>{category.name}</ResultItem>
+                ))}
             </Results>
           </SearchChat>
         </ChatList>

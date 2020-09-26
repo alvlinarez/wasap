@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { EditUsernameContainer } from './styles';
+import { useSelector } from 'react-redux';
 
 const EditUsername = ({ editUsername, setEditUsername }) => {
-  const [username, setUsername] = useState('username');
+  const { name } = useSelector((state) => state.user.currentUser);
+  const [username, setUsername] = useState(name);
 
   const handleEdit = () => {
     setEditUsername(false);
