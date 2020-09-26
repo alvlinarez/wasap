@@ -23,6 +23,7 @@
     "react-redux": "7.2.1",
     "react-router-dom": "5.2.0",
     "redux": "4.0.5",
+    "short-uuid": "4.1.0",
     "styled-components": "5.2.0"
   },
   "devDependencies": {

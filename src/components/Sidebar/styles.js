@@ -41,10 +41,6 @@ export const ChatContainerTitle = styled.div`
   user-select: none;
 `;
 
-export const PlusIcon = styled.i`
-  margin-right: 20px;
-`;
-
 export const ChatList = styled.div`
   display: ${(props) => (props.show ? 'block' : 'none')};
   margin: 0 20px;
