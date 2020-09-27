@@ -1,5 +1,14 @@
-import { ADD_MESSAGE, DELETE_MESSAGE } from '../types/messageTypes';
+import {
+  ADD_MESSAGE,
+  DELETE_MESSAGE,
+  GET_MESSAGES
+} from '../types/messageTypes';
 const short = require('short-uuid');
+
+export const getMessages = (conversationId) => ({
+  type: GET_MESSAGES,
+  payload: conversationId
+});
 
 export const addMessage = ({
   senderId,
