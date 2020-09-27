@@ -9,6 +9,8 @@ Features:
 * User can update their username, add more users and 
 public chats
 
+[See app in production](https://alg-wasap.netlify.app)
+
 ## Scripts
 
 * `npm install` to install dependencies
