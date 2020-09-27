@@ -22,7 +22,7 @@ const Chat = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getMessages(currentConversation.id));
+    dispatch(getMessages(currentConversation));
   }, [currentConversation]);
 
   const getUserName = (id) => {

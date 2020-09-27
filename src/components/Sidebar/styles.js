@@ -99,4 +99,5 @@ export const ResultItem = styled.div`
     background-color: #cccccc;
     cursor: pointer;
   }
+  background-color: ${(props) => (props.isSelected ? '#cccccc' : '#e8e8e8')};
 `;

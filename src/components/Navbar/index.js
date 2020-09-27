@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { assignCurrentUser, addUser } from '../../actions/userActions';
+import { clearCurrentConversation } from '../../actions/conversationActions';
 import EditUsername from '../EditUsername';
 import userIcon from '../../../public/static/user-icon.png';
 import { Dropdown, DropdownContent, LiUsername, Nav, Username } from './styles';
@@ -33,6 +34,11 @@ const Navbar = () => {
     );
   };
 
+  const handleAssignUser = (user) => {
+    dispatch(assignCurrentUser(user));
+    dispatch(clearCurrentConversation());
+  };
+
   return (
     <Nav>
       <ul>
@@ -57,10 +63,7 @@ const Navbar = () => {
                 users.map((user) => {
                   if (user.id !== id) {
                     return (
-                      <a
-                        key={user.id}
-                        onClick={() => dispatch(assignCurrentUser(user))}
-                      >
+                      <a key={user.id} onClick={() => handleAssignUser(user)}>
                         {user.name}
                       </a>
                     );

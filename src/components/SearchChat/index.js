@@ -9,6 +9,12 @@ import {
 
 const SearchChat = ({ data, user }) => {
   const currentUser = useSelector((state) => state.user.currentUser);
+  const currentConversation = useSelector(
+    (state) => state.conversation.currentConversation
+  );
+  const conversations = useSelector(
+    (state) => state.conversation.conversations
+  );
   const [filter, setFilter] = useState('');
 
   const dispatch = useDispatch();
@@ -21,20 +27,23 @@ const SearchChat = ({ data, user }) => {
       )
     );
 
-  const handleAssignConversation = (categoryId) => {
-    dispatch(
-      addConversation({
-        categoryId
-      })
-    );
-    dispatch(assignCurrentConversation({ categoryId }));
+  const handlePublicConversation = (categoryId) => {
+    if (!conversations.some((c) => c.categoryId === categoryId)) {
+      dispatch(
+        addConversation({
+          categoryId
+        })
+      );
+    }
+    if (currentConversation.categoryId !== categoryId) {
+      dispatch(assignCurrentConversation({ categoryId }));
+    }
   };
 
-  const handleAddConversation = (userId) => {
+  const handleAddPrivateConversation = (userId) => {
     dispatch(
       addConversation({
-        user_1: currentUser.id,
-        user_2: userId,
+        users: [currentUser.id, userId],
         isPrivate: true
       })
     );
@@ -51,6 +60,7 @@ const SearchChat = ({ data, user }) => {
         show={data && data.length > 1}
       />
       <Results>
+        {/*Private chats or public chats*/}
         {data && user ? (
           data.length <= 1 ? (
             <div>No users added yet.</div>
@@ -60,7 +70,12 @@ const SearchChat = ({ data, user }) => {
                 return (
                   <ResultItem
                     key={u.id}
-                    onClick={() => handleAddConversation(u.id)}
+                    onClick={() => handleAddPrivateConversation(u.id)}
+                    isSelected={
+                      currentConversation.user_2 === u.id ||
+                      (currentConversation.user_1 === u.id &&
+                        currentConversation.user_2 === currentUser.id)
+                    }
                   >
                     {u.name}
                   </ResultItem>
@@ -72,7 +87,8 @@ const SearchChat = ({ data, user }) => {
           filteredData.map((d) => (
             <ResultItem
               key={d.id}
-              onClick={() => handleAssignConversation(d.id)}
+              onClick={() => handlePublicConversation(d.id)}
+              isSelected={currentConversation.categoryId === d.id}
             >
               {d.name}
             </ResultItem>

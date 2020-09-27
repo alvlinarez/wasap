@@ -5,10 +5,12 @@ import {
 } from '../types/messageTypes';
 const short = require('short-uuid');
 
-export const getMessages = (conversationId) => ({
-  type: GET_MESSAGES,
-  payload: conversationId
-});
+export const getMessages = (conversation) => {
+  return {
+    type: GET_MESSAGES,
+    payload: conversation
+  };
+};
 
 export const addMessage = ({
   senderId,

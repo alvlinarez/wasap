@@ -15,8 +15,20 @@ export default (state = initialState, action) => {
       return {
         ...state,
         currentMessages: state.messages
-          .filter((message) => message.conversationId === action.payload)
+          .filter((message) => message.conversationId === action.payload.id)
           .sort((a, b) => a.time - b.time)
+        // currentMessages: action.payload.isPrivate
+        //   ? state.messages
+        //       .filter(
+        //         (message) =>
+        //           message.conversationId === action.payload.id &&
+        //           (message.senderId === action.payload.user_1 ||
+        //             message.senderId === action.payload.user_2)
+        //       )
+        //       .sort((a, b) => a.time - b.time)
+        //   : state.messages
+        //       .filter((message) => message.conversationId === action.payload.id)
+        //       .sort((a, b) => a.time - b.time)
       };
     case ADD_MESSAGE:
       return {
@@ -28,6 +40,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         messages: state.messages.map((message) => {
+          if (message.id === action.payload) {
+            message.deleted = true;
+          }
+          return message;
+        }),
+        currentMessages: state.currentMessages.map((message) => {
           if (message.id === action.payload) {
             message.deleted = true;
           }
