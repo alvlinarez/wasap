@@ -9,7 +9,7 @@ export default (state = initialState, action) => {
     case ADD_MESSAGE:
       return {
         ...state,
-        messages: state.messages.push(action.payload)
+        messages: [...state.messages, action.payload]
       };
     case DELETE_MESSAGE:
       return {
