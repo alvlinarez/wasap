@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import SearchChat from '../SearchChat';
 import {
   Chat,
   ChatContainer,
   ChatContainerArrow,
   ChatContainerTitle,
-  ChatList,
-  ResultItem,
-  Results,
   SearchChatContainer
 } from '../Sidebar/styles';
-import { useSelector } from 'react-redux';
-import SearchChat from '../SearchChat';
+import { ChatList } from './styles';
 
 const PrivateChats = () => {
   const users = useSelector((state) => state.user.users);
