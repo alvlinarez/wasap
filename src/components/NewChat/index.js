@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { addCategory } from '../../actions/categoryActions';
 import { NewChatContainer, NewChatIcons } from './styles';
 
-const NewChat = ({ showNewChat, setShowNewChat }) => {
+const NewChat = ({ showNewCategory, setShowNewCategory }) => {
   const [category, setCategory] = useState('');
 
   // dispatch to change category
@@ -12,11 +12,11 @@ const NewChat = ({ showNewChat, setShowNewChat }) => {
   const handleAddCategory = () => {
     if (category.trim() === '') return;
     dispatch(addCategory(category));
-    setShowNewChat(false);
+    setShowNewCategory(false);
     setCategory('');
   };
   return (
-    <NewChatContainer show={showNewChat}>
+    <NewChatContainer show={showNewCategory}>
       <input
         type="text"
         onChange={(e) => setCategory(e.target.value)}
@@ -30,7 +30,7 @@ const NewChat = ({ showNewChat, setShowNewChat }) => {
         <span onClick={handleAddCategory}>
           <i className="far fa-check-circle" />
         </span>
-        <span onClick={() => setShowNewChat(false)}>
+        <span onClick={() => setShowNewCategory(false)}>
           <i className="far fa-times-circle" />
         </span>
       </NewChatIcons>

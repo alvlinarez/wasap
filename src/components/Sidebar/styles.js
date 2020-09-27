@@ -58,7 +58,7 @@ export const ChatList = styled.div`
   }
 `;
 
-export const SearchChat = styled.div`
+export const SearchChatContainer = styled.div`
   padding-top: 10px;
   text-align: center;
   input {
