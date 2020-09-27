@@ -41,6 +41,7 @@ const SearchChat = ({ data, user }) => {
   };
 
   const handleAddPrivateConversation = (userId) => {
+    // Conversation must be verified if already exists between sender and receiver
     if (
       !conversations.find(
         (c) => c.user_1 === currentUser.id && c.user_2 === userId

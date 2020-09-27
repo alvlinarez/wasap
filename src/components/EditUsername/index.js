@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { editUser } from '../../actions/userActions';
 import { EditUsernameContainer } from './styles';
@@ -15,6 +15,11 @@ const EditUsername = ({ editUsername, setEditUsername }) => {
     dispatch(editUser({ id, name: username }));
     setEditUsername(false);
   };
+
+  // If current user is changed, the input would be too
+  useEffect(() => {
+    setUsername(name);
+  }, [name]);
 
   return (
     <EditUsernameContainer show={editUsername}>
