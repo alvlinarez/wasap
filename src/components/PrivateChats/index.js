@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import SearchChat from '../SearchChat';
 import {
-  Chat,
+  ChatDiv,
   ChatContainer,
   ChatContainerArrow,
   ChatContainerTitle,
@@ -19,7 +19,7 @@ const PrivateChats = () => {
     setShowPrivateChats(!showPrivateChats);
   };
   return (
-    <Chat>
+    <ChatDiv>
       <ChatContainer onClick={handleShowPrivateChats}>
         <ChatContainerArrow>
           {showPrivateChats ? (
@@ -42,7 +42,7 @@ const PrivateChats = () => {
           <SearchChat data={users} user />
         </SearchChatContainer>
       </ChatList>
-    </Chat>
+    </ChatDiv>
   );
 };
 

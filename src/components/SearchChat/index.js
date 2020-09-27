@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import { ResultItem, Results } from '../Sidebar/styles';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Input } from './styles';
+import {
+  addConversation,
+  assignCurrentConversation
+} from '../../actions/conversationActions';
 
 const SearchChat = ({ data, user }) => {
   const currentUser = useSelector((state) => state.user.currentUser);
   const [filter, setFilter] = useState('');
+
+  const dispatch = useDispatch();
 
   const filteredData =
     data &&
@@ -14,6 +20,26 @@ const SearchChat = ({ data, user }) => {
         item['name'].toLowerCase().includes(filter.toLowerCase())
       )
     );
+
+  const handleAssignConversation = (categoryId) => {
+    dispatch(
+      addConversation({
+        categoryId
+      })
+    );
+    dispatch(assignCurrentConversation({ categoryId }));
+  };
+
+  const handleAddConversation = (userId) => {
+    dispatch(
+      addConversation({
+        user_1: currentUser.id,
+        user_2: userId,
+        isPrivate: true
+      })
+    );
+    dispatch(assignCurrentConversation({ userId }));
+  };
 
   return (
     <div>
@@ -31,12 +57,26 @@ const SearchChat = ({ data, user }) => {
           ) : (
             filteredData.map((u) => {
               if (u.id !== currentUser.id) {
-                return <ResultItem key={u.id}>{u.name}</ResultItem>;
+                return (
+                  <ResultItem
+                    key={u.id}
+                    onClick={() => handleAddConversation(u.id)}
+                  >
+                    {u.name}
+                  </ResultItem>
+                );
               }
             })
           )
         ) : (
-          filteredData.map((d) => <ResultItem key={d.id}>{d.name}</ResultItem>)
+          filteredData.map((d) => (
+            <ResultItem
+              key={d.id}
+              onClick={() => handleAssignConversation(d.id)}
+            >
+              {d.name}
+            </ResultItem>
+          ))
         )}
       </Results>
     </div>

@@ -14,7 +14,7 @@ export const Logo = styled.div`
   margin-bottom: 20px;
 `;
 
-export const Chat = styled.div`
+export const ChatDiv = styled.div`
   padding-bottom: 20px;
 `;
 

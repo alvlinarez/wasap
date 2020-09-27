@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import {
   Button,
-  Chat,
+  ChatDiv,
   ChatContainer,
   ChatContainerArrow,
   ChatContainerTitle,
   ChatList,
-  ResultItem,
-  Results,
   SearchChatContainer
 } from '../Sidebar/styles';
 import NewChat from '../NewChat';
@@ -27,7 +25,7 @@ const PublicChats = () => {
     setShowPublicChats(!showPublicChats);
   };
   return (
-    <Chat>
+    <ChatDiv>
       <ChatContainer onClick={handleShowPublicChats}>
         <ChatContainerArrow>
           {showPublicChats ? (
@@ -62,7 +60,7 @@ const PublicChats = () => {
           <SearchChat data={categories} />
         </SearchChatContainer>
       </ChatList>
-    </Chat>
+    </ChatDiv>
   );
 };
 

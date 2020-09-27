@@ -5,15 +5,17 @@ import {
 const short = require('short-uuid');
 
 export const addConversation = ({
-  users = [],
-  isPrivate,
+  user_1 = null,
+  user_2 = null,
+  isPrivate = false,
   categoryId = null
 }) => {
   return {
     type: ADD_CONVERSATION,
     payload: {
       id: short.generate(),
-      users,
+      user_1,
+      user_2,
       categoryId,
       isPrivate,
       time: new Date()
@@ -22,11 +24,11 @@ export const addConversation = ({
 };
 
 export const assignCurrentConversation = ({
-  idUser = null,
-  idCategory = null
+  userId = null,
+  categoryId = null
 }) => {
   return {
     type: ASSIGN_CURRENT_CONVERSATION,
-    payload: idUser || idCategory
+    payload: categoryId || userId
   };
 };
