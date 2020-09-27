@@ -13,6 +13,7 @@ import {
   SearchChat
 } from './styles';
 import { useSelector } from 'react-redux';
+import NewChat from '../NewChat';
 
 const Sidebar = () => {
   // Get users and categories from state
@@ -22,6 +23,7 @@ const Sidebar = () => {
 
   const [showPrivateChats, setShowPrivateChats] = useState(false);
   const [showPublicChats, setShowPublicChats] = useState(false);
+  const [showNewChat, setShowNewChat] = useState(false);
 
   const handleShowPrivateChats = () => {
     setShowPrivateChats(!showPrivateChats);
@@ -92,7 +94,18 @@ const Sidebar = () => {
 
         <ChatList show={showPublicChats}>
           <SearchChat>
-            <Button type="button">Add New Chat</Button>
+            <Button
+              type="button"
+              onClick={() => setShowNewChat(true)}
+              show={showNewChat}
+            >
+              Add New Chat
+            </Button>
+            <NewChat
+              showNewChat={showNewChat}
+              setShowNewChat={setShowNewChat}
+            />
+
             <input type="text" placeholder="Search chat..." />
             <Results>
               {categories &&

@@ -27,10 +27,10 @@ export default (state = initialState, action) => {
     case ADD_CATEGORY:
       return {
         ...state,
-        categories: state.categories.push({
-          id: short.generate(),
-          name: action.payload
-        })
+        categories: [
+          ...state.categories,
+          { id: short.generate(), name: action.payload }
+        ]
       };
     default:
       return state;

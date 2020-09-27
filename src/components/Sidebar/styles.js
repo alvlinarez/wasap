@@ -87,6 +87,7 @@ export const Button = styled.button`
   padding: 0;
   border-radius: 5px;
   cursor: pointer;
+  display: ${(props) => (props.show ? 'none' : 'inline-block')};
   &:hover {
     background-color: #cccccc;
   }
