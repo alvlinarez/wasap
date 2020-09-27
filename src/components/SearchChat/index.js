@@ -41,13 +41,26 @@ const SearchChat = ({ data, user }) => {
   };
 
   const handleAddPrivateConversation = (userId) => {
+    if (
+      !conversations.find(
+        (c) => c.user_1 === currentUser.id && c.user_2 === userId
+      ) &&
+      !conversations.find(
+        (c) => c.user_2 === currentUser.id && c.user_1 === userId
+      )
+    ) {
+      dispatch(
+        addConversation({
+          user_1: currentUser.id,
+          user_2: userId,
+          isPrivate: true
+        })
+      );
+    }
+
     dispatch(
-      addConversation({
-        users: [currentUser.id, userId],
-        isPrivate: true
-      })
+      assignCurrentConversation({ userId, currentUserId: currentUser.id })
     );
-    dispatch(assignCurrentConversation({ userId }));
   };
 
   return (

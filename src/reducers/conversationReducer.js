@@ -21,7 +21,13 @@ export default (state = initialState, action) => {
         ...state,
         currentConversation:
           state.conversations.find((c) => c.categoryId === action.payload) ||
-          state.conversations.find((c) => c.users.contains(action.payload))
+          state.conversations.find(
+            (c) =>
+              (c.user_2 === action.payload.userId &&
+                c.user_1 === action.payload.currentUserId) ||
+              (c.user_1 === action.payload.userId &&
+                c.user_2 === action.payload.currentUserId)
+          )
       };
     case CLEAR_CURRENT_CONVERSATION:
       return {
