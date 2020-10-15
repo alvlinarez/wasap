@@ -9,7 +9,7 @@ Features:
 * User can update their username, add more users and 
 public chats
 
-[See app in production](https://alg-wasap.netlify.app)
+[See app in production](https://wasap.alvlinarez.dev)
 
 ## Scripts
 
