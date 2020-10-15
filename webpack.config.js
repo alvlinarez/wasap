@@ -120,7 +120,7 @@ module.exports = function(_env, argv) {
       historyApiFallback: true,
       open: true,
       overlay: true,
-      port: 3000
+      port: 3006
     }
   };
 }
