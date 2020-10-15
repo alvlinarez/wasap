@@ -7,6 +7,10 @@ import userIcon from '../../../public/static/user-icon.png';
 import { Dropdown, DropdownContent, LiUsername, Nav, Username } from './styles';
 
 const short = require('short-uuid');
+import { uniqueNamesGenerator, names } from 'unique-names-generator';
+const configUniqueNames = {
+  dictionaries: [names]
+};
 
 const Navbar = () => {
   // Get users from reducer
@@ -20,16 +24,17 @@ const Navbar = () => {
   // Add user
   const handleAddUser = () => {
     const newUserId = short.generate();
+    const newUsername = uniqueNamesGenerator(configUniqueNames);
     dispatch(
       addUser({
         id: newUserId,
-        name: newUserId
+        name: newUsername
       })
     );
     dispatch(
       assignCurrentUser({
         id: newUserId,
-        name: newUserId
+        name: newUsername
       })
     );
   };

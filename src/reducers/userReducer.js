@@ -1,17 +1,24 @@
 import { ADD_USER, EDIT_USER, ASSIGN_CURRENT_USER } from '../types/userTypes';
+import { uniqueNamesGenerator, names } from 'unique-names-generator';
+
 const short = require('short-uuid');
 
+const configUniqueNames = {
+  dictionaries: [names]
+};
+
 const userId = short.generate();
+const username = uniqueNamesGenerator(configUniqueNames);
 
 const initialState = {
   currentUser: {
     id: userId,
-    name: userId
+    name: username
   },
   users: [
     {
       id: userId,
-      name: userId
+      name: username
     }
   ]
 };
